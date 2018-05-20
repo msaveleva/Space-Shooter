@@ -12,11 +12,16 @@ public class UIManager : MonoBehaviour {
     public GameObject pauseMenu;
 	public GameObject playerPrefab; //TODO: remove
 
+    private Animator _pauseMenuAnimatior;
+
 	public bool gameInProgress = false;
 
 	private float score = 0;
 
 	void Start() {
+        _pauseMenuAnimatior = GameObject.Find("Pause_Panel").GetComponent<Animator>();
+        _pauseMenuAnimatior.updateMode = AnimatorUpdateMode.UnscaledTime;
+
 		title.enabled = true;
 	}
 
@@ -45,5 +50,10 @@ public class UIManager : MonoBehaviour {
     public void EnablePauseUI(bool enable)
     {
         pauseMenu.SetActive(enable);
+
+        if (enable)
+        { 
+            _pauseMenuAnimatior.SetBool("isPaused", true);
+        }
     }
 }
