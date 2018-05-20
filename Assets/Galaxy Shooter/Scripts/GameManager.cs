@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -23,6 +24,11 @@ public class GameManager : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				StartGame ();
 			}
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Main_menu");
+            }
 		}
 	}
 
