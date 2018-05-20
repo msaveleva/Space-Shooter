@@ -963,6 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e368cd028a9dd49d9a4a97fbba115649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCoOpMode: 1
   gameInProgress: 0
   playerPrefab: {fileID: 1814875177997094, guid: febf9f3dac1b14787a63414190c6cbaa,
     type: 2}

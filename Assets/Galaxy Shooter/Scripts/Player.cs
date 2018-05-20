@@ -50,8 +50,7 @@ public class Player : MonoBehaviour {
 	private float _nextTimeCounter = 0.0f;
 	private int _currentNumberOfLifes = 5; //some initial value.
 
-	void Start () {
-		transform.position = new Vector3 (0,0,0);
+	void Start () {		
 		_currentNumberOfLifes = _maxNumberOfLifes;
 
 		_audioSource = GetComponent<AudioSource> ();
@@ -60,7 +59,12 @@ public class Player : MonoBehaviour {
 		if (_uiManager != null) {
 			_uiManager.UpdateLives (_currentNumberOfLifes);
 		}
-	}
+
+        if (!_gameManager.isCoOpMode)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+    }
 
 	void Update () {
 		movePlayer();
