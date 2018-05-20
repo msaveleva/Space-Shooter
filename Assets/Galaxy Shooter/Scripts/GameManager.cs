@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour {
 
     public bool isCoOpMode = false;
     public bool gameInProgress = false;
-	public GameObject playerPrefab;
+
+    [SerializeField]
+	private GameObject playerPrefab;
+    [SerializeField]
+    private GameObject coOpPlayersPrefab;
 
 	private UIManager _uiManager;
 	private SpawnManager _spawnManager;
@@ -37,6 +41,10 @@ public class GameManager : MonoBehaviour {
         if (!isCoOpMode)
         {
             Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(coOpPlayersPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         }
 
 		_uiManager.EnableMenuUI (true);
