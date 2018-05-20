@@ -50,6 +50,9 @@ public class Player : MonoBehaviour {
 	private float _nextTimeCounter = 0.0f;
 	private int _currentNumberOfLifes = 5; //some initial value.
 
+    public bool isPlayerOne = false;
+    public bool isPlayerTwo = false;
+
 	void Start () {		
 		_currentNumberOfLifes = _maxNumberOfLifes;
 
@@ -107,8 +110,28 @@ public class Player : MonoBehaviour {
 
 	private void movePlayer() {
 		//User input.
-		float horizontalInput = Input.GetAxis ("Horizontal");
-		float verticalInput = Input.GetAxis ("Vertical");
+		float horizontalInput = 0;
+		float verticalInput = 0;
+
+        if (_gameManager.isCoOpMode)
+        {
+            if (isPlayerOne)
+            {
+                horizontalInput = Input.GetAxis("Horizontal-p1");
+                verticalInput = Input.GetAxis("Vertical-p1");
+            }
+            else
+            {
+                horizontalInput = Input.GetAxis("Horizontal-p2");
+                verticalInput = Input.GetAxis("Vertical-p2");
+            }
+        }
+        else
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+        }
+
 
 		float adjustedSpeed = _speed;
 		if (_hasEnhancedSpeed) {
@@ -139,7 +162,17 @@ public class Player : MonoBehaviour {
 	}
 
 	private void shootWithLaser() {
-		bool shootKeyPressed = Input.GetKeyDown (KeyCode.Space) || Input.GetKeyDown (KeyCode.Mouse0);
+        bool shootKeyPressed = false;
+
+        if (isPlayerOne)
+        {
+            shootKeyPressed = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0);
+        }
+        else
+        {
+            shootKeyPressed = Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return);
+        }
+
 		bool canShoot = Time.time > _nextTimeCounter;
 		if (shootKeyPressed && canShoot) {
 			_audioSource.Play ();

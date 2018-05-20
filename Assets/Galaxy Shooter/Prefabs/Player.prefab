@@ -419,6 +419,8 @@ MonoBehaviour:
   _hasEnhancedSpeed: 0
   _enhancedSpeedEnableTime: 5
   _hasRaisedShield: 0
+  isPlayerOne: 1
+  isPlayerTwo: 0
 --- !u!212 &212106046468853214
 SpriteRenderer:
   m_ObjectHideFlags: 1
