@@ -17,15 +17,18 @@ public class UIManager : MonoBehaviour {
 
 	public bool gameInProgress = false;
 
-	private float score = 0;
-    private float bestScore = 0; //TODO: load from DB.
+    private float score = 0;
+    private float bestScore = 0;
+    private string kBestScorePrefIdentifier = "HigherScore";
 
 	void Start() {
         _pauseMenuAnimatior = GameObject.Find("Pause_Panel").GetComponent<Animator>();
         _pauseMenuAnimatior.updateMode = AnimatorUpdateMode.UnscaledTime;
 
 		title.enabled = true;
-	}
+        bestScore = PlayerPrefs.GetFloat(kBestScorePrefIdentifier, 0);
+        bestScoreText.text = "Best: " + bestScore;
+    }
 
 	public void UpdateLives(int numberOfLives) {
 		livesImage.sprite = liveSprites [numberOfLives];
@@ -43,7 +46,8 @@ public class UIManager : MonoBehaviour {
         {
             bestScore = score;
             bestScoreText.text = "Best: " + bestScore;
-            //TODO: update bestScore in DB.
+
+            PlayerPrefs.SetFloat(kBestScorePrefIdentifier, bestScore); //TODO: move to GameManager. 
         }
     }
 
