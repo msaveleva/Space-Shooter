@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
 	public void PlaySinglePlayerGame()
     {
-        Debug.Log("Loading single player mode scene...");
+        SceneManager.LoadScene("Single_player");
     }
 
     public void PlayCoOpModeGame()
     {
-        Debug.Log("Loading co-op mode scene...");
+        SceneManager.LoadScene("Co-Op_mode");
     }
 }
