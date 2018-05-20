@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public bool isCoOpMode = false;
     public bool gameInProgress = false;
+    public bool gameOnPause = false;
 
     [SerializeField]
 	private GameObject playerPrefab;
@@ -34,6 +35,24 @@ public class GameManager : MonoBehaviour {
                 SceneManager.LoadScene("Main_menu");
             }
 		}
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (gameOnPause)
+                {
+                    gameOnPause = false;
+                    Time.timeScale = 1;
+                    _uiManager.EnablePauseUI(false);
+                }
+                else
+                {
+                    gameOnPause = true;
+                    Time.timeScale = 0;
+                    _uiManager.EnablePauseUI(true);
+                }
+            }
+        }
 	}
 
 	public void StartGame() {

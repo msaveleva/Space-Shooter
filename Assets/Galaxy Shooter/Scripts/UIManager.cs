@@ -9,7 +9,8 @@ public class UIManager : MonoBehaviour {
 	public Image livesImage;
 	public Text scoreText;
 	public Image title;
-	public GameObject playerPrefab;
+    public GameObject pauseMenu;
+	public GameObject playerPrefab; //TODO: remove
 
 	public bool gameInProgress = false;
 
@@ -40,4 +41,9 @@ public class UIManager : MonoBehaviour {
 			title.enabled = true;
 		}
 	}
+
+    public void EnablePauseUI(bool enable)
+    {
+        pauseMenu.SetActive(enable);
+    }
 }
