@@ -41,7 +41,6 @@ public class EnemyAI : MonoBehaviour {
 
 			player.ReduceLife ();
 			Instantiate (_enemyExplosion, transform.position, Quaternion.identity);
-			_uiManager.UpdateScore ();
 			AudioSource.PlayClipAtPoint (_explodeAudioClip, Camera.main.transform.position, 1.0f);
 			Destroy (this.gameObject);
 		} else if (other.tag == "Laser") {

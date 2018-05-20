@@ -104,6 +104,8 @@ public class Player : MonoBehaviour {
 				_gameManager.GameOver ();
 			}
 
+            _uiManager.CheckBestScore();
+
  			Destroy (this.gameObject);
 		}
 	}

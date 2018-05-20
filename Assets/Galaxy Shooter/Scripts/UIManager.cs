@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 	public Sprite[] liveSprites;
 	public Image livesImage;
 	public Text scoreText;
+    public Text bestScoreText;
 	public Image title;
     public GameObject pauseMenu;
 	public GameObject playerPrefab; //TODO: remove
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour {
 	public bool gameInProgress = false;
 
 	private float score = 0;
+    private float bestScore = 0; //TODO: load from DB.
 
 	void Start() {
         _pauseMenuAnimatior = GameObject.Find("Pause_Panel").GetComponent<Animator>();
@@ -34,6 +36,16 @@ public class UIManager : MonoBehaviour {
 
 		scoreText.text = "Score: " + score;
 	}
+
+    public void CheckBestScore()
+    {
+        if (score > bestScore)
+        {
+            bestScore = score;
+            bestScoreText.text = "Best: " + bestScore;
+            //TODO: update bestScore in DB.
+        }
+    }
 
 	public void EnableMenuUI(bool enable) {
 		if (enable) {
