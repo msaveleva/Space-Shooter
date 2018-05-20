@@ -32,28 +32,39 @@ public class GameManager : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene("Main_menu");
+                OpenMainMenu();
             }
 		}
         else
         {
             if (Input.GetKeyDown(KeyCode.P))
             {
-                if (gameOnPause)
-                {
-                    gameOnPause = false;
-                    Time.timeScale = 1;
-                    _uiManager.EnablePauseUI(false);
-                }
-                else
-                {
-                    gameOnPause = true;
-                    Time.timeScale = 0;
-                    _uiManager.EnablePauseUI(true);
-                }
+                _EnablePause(!gameOnPause);
             }
         }
 	}
+
+    private void _EnablePause(bool enable)
+    {
+        gameOnPause = enable;
+        Time.timeScale = enable ? 0 : 1;
+        _uiManager.EnablePauseUI(enable);
+    }
+
+    public void ResumeGame()
+    {
+        _EnablePause(false);
+    }
+
+    public void OpenMainMenu()
+    {
+        if (gameOnPause)
+        {
+            ResumeGame();
+        }
+        
+        SceneManager.LoadScene("Main_menu");
+    }
 
 	public void StartGame() {
 		gameInProgress = true;
